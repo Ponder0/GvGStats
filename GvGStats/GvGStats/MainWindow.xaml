@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GvGStats"
         mc:Ignorable="d"
-        Title="MainWindow" Height="229.873" Width="220.975">
+        Title="AO GvG Stats" Height="229.873" Width="220.975" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="label" Content="GvG Stat Tracker" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
-        <Button x:Name="btn_leaderboard" Content="Leaderboard" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btn_addRecord" Content="Add Record" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btn_addPlayer" Content="Add Player" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btn_leaderboard" Content="Leaderboard" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Width="75" Click="btn_leaderboard_Click"/>
+        <Button x:Name="btn_addRecord" Content="Add Record" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="75" Click="btn_addRecord_Click"/>
+        <Button x:Name="btn_addPlayer" Content="Add Player" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Width="75" Click="btn_addPlayer_Click"/>
 
     </Grid>
 </Window>
