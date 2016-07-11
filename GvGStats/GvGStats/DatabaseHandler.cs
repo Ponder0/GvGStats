@@ -172,7 +172,7 @@ namespace GvGStats
 
 
         /// <summary>
-        /// Updates Player table values for Wins and Losses for specified Player
+        /// Updates Player table values for Wins, Losses, and WinRatio for specified Player
         /// </summary>
         /// <param name="playerName">Player name to check</param>
         public void UpdatePlayerWinsAndLosses(string playerName)
