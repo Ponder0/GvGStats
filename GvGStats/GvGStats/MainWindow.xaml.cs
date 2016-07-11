@@ -23,6 +23,19 @@ namespace GvGStats
         public MainWindow()
         {
             InitializeComponent();
+
+            // TESTING: database connection
+            //DatabaseHandler dbHandler = new DatabaseHandler();
+
+            //dbHandler.OpenConnection();
+
+            //dbHandler.SendQuery("SELECT name FROM sqlite_master WHERE type='table'");
+            //while (dbHandler.dataReader.Read())
+            //{
+            //    Console.Write(dbHandler.dataReader.GetString(0));
+            //}
+
+            //dbHandler.CloseConnection();
         }
 
         #region Button Clicks
