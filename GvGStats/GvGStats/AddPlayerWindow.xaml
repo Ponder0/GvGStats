@@ -8,7 +8,7 @@
         Title="AddPlayerWindow" Height="225" Width="276" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button x:Name="btn_Back" Content="Back" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="40" Click="btn_Back_Click"/>
-        <Label x:Name="label_AddPlayer" Content="Add Player Menu" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="label_AddPlayer" Content="Add Player" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
         <Label x:Name="label_Name" Content="Name:" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label_Role" Content="Role:" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_NameEntry" HorizontalAlignment="Center" Height="23" Margin="0,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

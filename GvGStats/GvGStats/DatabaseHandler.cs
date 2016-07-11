@@ -150,7 +150,7 @@ namespace GvGStats
 
 
         /// <summary>
-        /// Returns a datatable for use by the datagrid in the Leaderboard window
+        /// Returns a DataTable consisting of the entire Players table
         /// </summary>
         /// <returns></returns>
         public DataTable DisplayPlayerData()
@@ -168,8 +168,6 @@ namespace GvGStats
 
             return dt;
         }
-
-
 
 
         /// <summary>
