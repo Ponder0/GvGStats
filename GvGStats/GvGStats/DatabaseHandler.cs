@@ -70,6 +70,9 @@ namespace GvGStats
                     cmd.ExecuteNonQuery();
                 }
 
+                // Confirmation Window
+                System.Windows.MessageBox.Show("Player Added");
+
                 dataConnection.Close();
             }
         }
@@ -108,6 +111,11 @@ namespace GvGStats
 
                     cmd.ExecuteNonQuery();
                 }
+
+                // Confirmation Window
+                System.Windows.MessageBox.Show("Match Record Added");
+
+                // Should add method here to increment player wins/losses
 
                 dataConnection.Close();
             }
