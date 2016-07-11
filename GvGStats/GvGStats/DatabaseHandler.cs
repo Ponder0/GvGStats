@@ -21,7 +21,7 @@ namespace GvGStats
 
         public DatabaseHandler()
         {
-            // Update player wins and losses
+            // Update player wins and losses in the database
             UpdateAllWinsAndLosses();
         }
 
