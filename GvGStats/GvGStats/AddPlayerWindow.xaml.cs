@@ -22,7 +22,18 @@ namespace GvGStats
         public AddPlayerWindow()
         {
             InitializeComponent();
+
+            // Load combo box
+            comboBox_RoleSelector.Items.Add("Melee");
+            comboBox_RoleSelector.Items.Add("MeleeCC");
+            comboBox_RoleSelector.Items.Add("Mage");
+            comboBox_RoleSelector.Items.Add("Runner");
+            comboBox_RoleSelector.Items.Add("Healer");
+            comboBox_RoleSelector.SelectedIndex = 0; // Set to first option
         }
+
+
+        #region Button Clicks
 
         private void btn_Back_Click(object sender, RoutedEventArgs e)
         {
@@ -30,5 +41,13 @@ namespace GvGStats
             mainWindow.Show();
             this.Close();
         }
+
+        private void btn_AddPlayer_Click(object sender, RoutedEventArgs e)
+        {
+            DatabaseHandler data = new DatabaseHandler();
+            data.AddPlayerToDatabase(textBox_NameEntry.Text, comboBox_RoleSelector.SelectedItem.ToString());
+        }
+
+        #endregion
     }
 }

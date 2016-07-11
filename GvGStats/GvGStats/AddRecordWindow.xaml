@@ -5,9 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GvGStats"
         mc:Ignorable="d"
-        Title="AddRecordWindow" Height="300" Width="300" WindowStartupLocation="CenterScreen">
+        Title="AddRecordWindow" Height="322" Width="300" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button x:Name="btn_Back" Content="Back" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="75" Click="btn_Back_Click"/>
+        <Button x:Name="btn_Back" Content="Back" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="44" Click="btn_Back_Click"/>
+        <Label x:Name="label_WinOrLoss" Content="W/L:" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Player1" Content="Player 1:" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Player2" Content="Player 2:" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Player3" Content="Player 3:" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Player4" Content="Player 4:" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Player5" Content="Player 5:" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btn_AddRecord" Content="Add Match Result" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" Width="111" Click="btn_AddRecord_Click"/>
+        <ComboBox x:Name="comboBox_WinOrLose" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Width="75"/>
+        <ComboBox x:Name="comboBox_Player1" HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="comboBox_Player2" HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="comboBox_Player3" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="comboBox_Player4" HorizontalAlignment="Center" Margin="0,170,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="comboBox_Player5" HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="label_WindowTitle" Content="Add Match Record" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
 
     </Grid>
 </Window>
