@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 using System.Data.SQLite;
 
 namespace GvGStats
@@ -18,6 +19,11 @@ namespace GvGStats
 
         #endregion
 
+        public DatabaseHandler()
+        {
+            // Update player wins and losses
+            UpdateAllWinsAndLosses();
+        }
 
         #region Methods
 
@@ -115,12 +121,9 @@ namespace GvGStats
                 // Confirmation Window
                 System.Windows.MessageBox.Show("Match Record Added");
 
-                // Should add method here to increment player wins/losses
-
                 dataConnection.Close();
             }
         }
-
 
 
         /// <summary>
@@ -143,6 +146,101 @@ namespace GvGStats
             CloseConnection();
 
             return playerNames;
+        }
+
+
+        /// <summary>
+        /// Returns a datatable for use by the datagrid in the Leaderboard window
+        /// </summary>
+        /// <returns></returns>
+        public DataTable DisplayPlayerData()
+        {
+            OpenConnection();
+
+            string cmdString = "SELECT * FROM Players";
+            SQLiteCommand cmd = new SQLiteCommand(cmdString, dataConnection);
+
+            SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(cmd);
+
+            DataTable dt = new DataTable("PlayersList");
+
+            dataAdapter.Fill(dt);
+
+            return dt;
+        }
+
+
+
+
+        /// <summary>
+        /// Updates values in Players table for Wins and Losses based on MatchStats table
+        /// </summary>
+        /// <param name="playerName">Player name to check</param>
+        public void UpdatePlayerWinsAndLosses(string playerName)
+        {
+            OpenConnection();
+
+            int wins = 0;
+            int losses = 0;
+
+            SendQuery(
+                "SELECT WinOrLoss FROM MatchStats WHERE " +
+                "Player1='" + playerName + "' OR " +
+                "Player2='" + playerName + "' OR " +
+                "Player3='" + playerName + "' OR " +
+                "Player4='" + playerName + "' OR " +
+                "Player5='" + playerName + "'"
+                );
+
+            while (dataReader.Read())
+            {
+                if (dataReader.GetString(0) == "Win")
+                {
+                    wins++;
+                }
+                else if (dataReader.GetString(0) == "Loss")
+                {
+                    losses++;
+                }
+            }
+
+            CloseConnection();
+
+
+            // Update Player Wins and Losses
+            using (dataConnection = new SQLiteConnection(connectionString))
+            {
+                dataConnection.Open();
+
+                using (SQLiteCommand cmd = new SQLiteCommand(dataConnection))
+                {
+                    cmd.CommandText =
+                        "UPDATE Players SET Wins=" + wins + ", Losses=" + losses +
+                        " WHERE Name='" + playerName + "'";            
+                    cmd.Prepare();
+
+                    cmd.ExecuteNonQuery();
+                }
+
+
+                dataConnection.Close();
+            }
+        }
+
+
+        /// <summary>
+        /// Updates All Player Win/Loss data
+        /// </summary>
+        public void UpdateAllWinsAndLosses()
+        {
+            List<string> playerList = new List<string>();
+
+            playerList = GetListOfPlayerNames();
+
+            foreach (string name in playerList)
+            {
+                UpdatePlayerWinsAndLosses(name);
+            }
         }
 
         #endregion

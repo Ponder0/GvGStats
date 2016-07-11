@@ -19,9 +19,15 @@ namespace GvGStats
     /// </summary>
     public partial class LeaderboardWindow : Window
     {
+        DatabaseHandler data = new DatabaseHandler();
+
+
         public LeaderboardWindow()
         {
             InitializeComponent();
+
+            // Display Players Table with DataGrid
+            dataGrid_LeaderboardSheet.ItemsSource = data.DisplayPlayerData().DefaultView;
         }
 
         private void btn_Back_Click(object sender, RoutedEventArgs e)
@@ -30,5 +36,6 @@ namespace GvGStats
             mainWindow.Show();
             this.Close();
         }
+
     }
 }
