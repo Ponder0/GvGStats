@@ -21,7 +21,6 @@ namespace GvGStats
     {
         DatabaseHandler data = new DatabaseHandler();
 
-
         public LeaderboardWindow()
         {
             InitializeComponent();

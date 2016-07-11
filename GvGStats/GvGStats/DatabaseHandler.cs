@@ -64,7 +64,7 @@ namespace GvGStats
                 using (SQLiteCommand cmd = new SQLiteCommand(dataConnection))
                 {
                     cmd.CommandText = 
-                        "INSERT INTO Players (ID, Name, Role, Wins, Losses) VALUES(@id, @name, @role, @wins, @losses)";
+                        "INSERT INTO Players (ID, Name, Role, Wins, Losses, WinRatio) VALUES(@id, @name, @role, @wins, @losses, @winratio)";
                     cmd.Prepare();
 
                     cmd.Parameters.AddWithValue("@id", null); // Auto-increments
@@ -72,6 +72,7 @@ namespace GvGStats
                     cmd.Parameters.AddWithValue("@role", inputRole);
                     cmd.Parameters.AddWithValue("@wins", 0);
                     cmd.Parameters.AddWithValue("@losses", 0);
+                    cmd.Parameters.AddWithValue("@winratio", 0);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -171,7 +172,7 @@ namespace GvGStats
 
 
         /// <summary>
-        /// Updates values in Players table for Wins and Losses based on MatchStats table
+        /// Updates Player table values for Wins and Losses for specified Player
         /// </summary>
         /// <param name="playerName">Player name to check</param>
         public void UpdatePlayerWinsAndLosses(string playerName)
@@ -210,10 +211,25 @@ namespace GvGStats
             {
                 dataConnection.Open();
 
+                double winRatio = 0.0;
+
+                if (losses > 0)
+                {
+                    winRatio = (double)wins / (double)(wins + losses);
+                }
+                else
+                {
+                    winRatio = wins;
+                }
+
+                winRatio = Math.Round(winRatio, 2);
+
+                Console.Write(winRatio);
+
                 using (SQLiteCommand cmd = new SQLiteCommand(dataConnection))
                 {
                     cmd.CommandText =
-                        "UPDATE Players SET Wins=" + wins + ", Losses=" + losses +
+                        "UPDATE Players SET Wins=" + wins + ", Losses=" + losses + ", WinRatio=" + winRatio +
                         " WHERE Name='" + playerName + "'";            
                     cmd.Prepare();
 
