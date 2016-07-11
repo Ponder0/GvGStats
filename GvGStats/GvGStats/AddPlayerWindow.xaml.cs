@@ -45,7 +45,6 @@ namespace GvGStats
         private void btn_AddPlayer_Click(object sender, RoutedEventArgs e)
         {
             DatabaseHandler data = new DatabaseHandler();
-
             data.AddPlayerToDatabase(textBox_NameEntry.Text, comboBox_RoleSelector.SelectedItem.ToString());
         }
 

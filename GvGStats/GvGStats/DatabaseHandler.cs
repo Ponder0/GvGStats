@@ -74,6 +74,69 @@ namespace GvGStats
             }
         }
 
+
+        /// <summary>
+        /// Adds a match record to the MatchStats database
+        /// </summary>
+        /// <param name="winOrLoss"></param>
+        /// <param name="player1"></param>
+        /// <param name="player2"></param>
+        /// <param name="player3"></param>
+        /// <param name="player4"></param>
+        /// <param name="player5"></param>
+        public void AddMatchRecordToDatabase(string winOrLoss, string player1, string player2, 
+            string player3, string player4, string player5)
+        {
+            using (dataConnection = new SQLiteConnection(connectionString))
+            {
+                dataConnection.Open();
+
+                using (SQLiteCommand cmd = new SQLiteCommand(dataConnection))
+                {
+                    cmd.CommandText =
+                        "INSERT INTO MatchStats (GameID, WinOrLoss, Player1, Player2, Player3, Player4, Player5) " +
+                        "VALUES(@id, @winorloss, @p1, @p2, @p3, @p4, @p5)";
+                    cmd.Prepare();
+
+                    cmd.Parameters.AddWithValue("@id", null); // Auto-increments
+                    cmd.Parameters.AddWithValue("@winorloss", winOrLoss);
+                    cmd.Parameters.AddWithValue("@p1", player1);
+                    cmd.Parameters.AddWithValue("@p2", player2);
+                    cmd.Parameters.AddWithValue("@p3", player3);
+                    cmd.Parameters.AddWithValue("@p4", player4);
+                    cmd.Parameters.AddWithValue("@p5", player5);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                dataConnection.Close();
+            }
+        }
+
+
+
+        /// <summary>
+        /// Populates a list with current player names from database
+        /// </summary>
+        /// <returns>a List of player names</returns>
+        public List<string> GetListOfPlayerNames()
+        {
+            List<string> playerNames = new List<string>();
+
+            OpenConnection();
+
+            SendQuery("SELECT Name FROM Players ORDER BY Name");
+
+            while (dataReader.Read())
+            {
+                playerNames.Add(dataReader.GetString(0));
+            }
+
+            CloseConnection();
+
+            return playerNames;
+        }
+
         #endregion
 
     }
